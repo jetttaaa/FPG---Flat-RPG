@@ -32,7 +32,13 @@ public class spawning : MonoBehaviour
     {
         pos1.SetActive(false);
         pos2.SetActive(false);
+        Paused = true;
+    }
+    public void FirstStart()
+    {
+        Paused = false;
         StartSpawning();
+        Time.timeScale = 1;
     }
 
     public async void StartSpawning()
