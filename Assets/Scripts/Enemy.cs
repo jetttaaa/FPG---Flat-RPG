@@ -6,7 +6,7 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     private GameObject Player;
-    private float speed = 2f;
+    private float speed = 4f;
     public float flashTime;
     private bool attacking = false;
     private float nextActionTime = 0.0f;
@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject DamageText = Instantiate(damageTextPrefab, this.transform);
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
+        Hit_for = Player.GetComponent<Player>().AttackPower;
         hp -= Hit_for;
 
     }

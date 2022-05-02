@@ -13,6 +13,7 @@ public class spawning : MonoBehaviour
     public GameObject nopos2;
     public GameObject target;
     public GameObject PausedInWaveMenu;
+    public GameObject UpgradeScreen;
     public int WaveCounter;
     public bool WaveCleared = false;
     public bool Paused = false;
@@ -43,7 +44,7 @@ public class spawning : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Esc"))
+        if (Input.GetButtonDown("Esc") && !Paused)
         {
             Paused = true;
             PausedInWaveMenu.SetActive(true);
@@ -107,11 +108,13 @@ public class spawning : MonoBehaviour
         else if (actNum >= max_spawn_num && WaveCleared)
         {
             Paused = true;
+            Upgrades();
         }
     }
 
-    void PausedGame()
+    void Upgrades()
     {
+        UpgradeScreen.SetActive(true);
 
     }
 

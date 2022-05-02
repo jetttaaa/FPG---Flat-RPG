@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 100;
-    public float bulletSpeed = 10f;
+    public float bulletSpeed;
+    private float hp;
+    private float damage;
+    public float AttackPower;
+    private float flashTime;
     public Rigidbody2D rb;
     public GameObject healthbar;
     public GameObject healthbarHP;
-    private float hp = 200f;
-    private float damage = 20f;
-    public float AttackPower = 10f;
-    private SpriteRenderer color;
     public GameObject bullet;
-    public float flashTime;
+    public GameObject Stats;
 
     Color origionalColor;
     public SpriteRenderer renderer;
@@ -25,6 +24,12 @@ public class Player : MonoBehaviour
     private Vector3 maxHP;
     private void Awake()
     {
+        Stats = GameObject.FindGameObjectWithTag("Stats");
+        bulletSpeed = 1;
+        hp = 1;
+        damage = 1;
+        AttackPower = 1;
+
         scale = new Vector3(damage, 0f, 0f);
         scaleLimiter = new Vector3(0f, 0f, 0f);
         maxHP = new Vector3(hp, 200f, 200f);
@@ -32,6 +37,17 @@ public class Player : MonoBehaviour
         healthbar.transform.localScale = maxHP;
         origionalColor = renderer.color;
 
+    }
+    private void Start()
+    {
+        UpdateStats();
+    }
+    public void UpdateStats()
+    {
+        bulletSpeed = Stats.GetComponent<Stats>().bulletSpeed;
+        hp = Stats.GetComponent<Stats>().hp;
+        damage = Stats.GetComponent<Stats>().damage;
+        AttackPower = Stats.GetComponent<Stats>().AttackPower;
     }
 
     public void Damaged()
