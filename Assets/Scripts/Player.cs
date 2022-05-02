@@ -59,10 +59,10 @@ public class Player : MonoBehaviour
 
         float AngleRad = Mathf.Atan2(lookAt.y - this.transform.position.y, lookAt.x - this.transform.position.x);
 
-        float AngleDeg = (180 / Mathf.PI) *AngleRad;
+        float AngleDeg = (180 / Mathf.PI) * AngleRad;
 
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
         {
             Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
             Vector2 myPos = new Vector2(transform.position.x, transform.position.y);
@@ -73,11 +73,5 @@ public class Player : MonoBehaviour
             projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
         }
 
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Enemy_Basic")) {
-            
-        }
     }
 }

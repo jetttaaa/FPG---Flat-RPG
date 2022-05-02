@@ -12,8 +12,14 @@ public class spawning : MonoBehaviour
     public GameObject nopos1;
     public GameObject nopos2;
     public GameObject target;
+    public GameObject PausedInWaveMenu;
+    public int WaveCounter;
+    public bool WaveCleared = false;
+    public bool Paused = false;
+    public int killed = 0;
+    private bool max_set;
 
-    public int max_spawn_num = 1;
+    public int max_spawn_num;
     public float spawn_time = 1f;
 
     public static int points = 0;
@@ -30,15 +36,36 @@ public class spawning : MonoBehaviour
 
     public async void StartSpawning()
     {
+        max_spawn_num = (WaveCounter * 5);
+        max_set = true;
         InvokeRepeating("SpawnTarget", 0, spawn_time);
-        
+
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("Esc"))
+        {
+            Paused = true;
+            PausedInWaveMenu.SetActive(true);
+        }
+        if (Paused)
+        {
+            Time.timeScale = 0;
+        }
+        if (killed >= max_spawn_num && max_set) WaveCleared = true;
+    }
+    public void UnpauseInWave()
+    {
+        PausedInWaveMenu.SetActive(false);
+        Paused = false;
+        Time.timeScale = 1;
     }
 
     public void StopSpawning()
     {
-        
+
         CancelInvoke("SpawnTarget");
-        
+
     }
     bool IsCBetweenAB(Vector3 A, Vector3 B, Vector3 C)
     {
@@ -61,19 +88,31 @@ public class spawning : MonoBehaviour
             Vector2 position = new Vector3(randomX, randomY);
             do
             {
-                if (!IsCBetweenAB(notposition1, notposition2, position)) { 
-                    Instantiate(target, position, Quaternion.Euler(new Vector2(0, 0))); 
-                    actNum++; 
-                    spawned = true; 
-                } 
-                else { 
+                if (!IsCBetweenAB(notposition1, notposition2, position))
+                {
+                    Instantiate(target, position, Quaternion.Euler(new Vector2(0, 0)));
+                    actNum++;
+                    spawned = true;
+                }
+                else
+                {
                     randomX = Random.Range(position1.x, position2.x);
                     randomY = Random.Range(position1.y, position2.y);
                     position = new Vector3(randomX, randomY);
                 };
             } while (spawned == false);
-               
+
 
         }
+        else if (actNum >= max_spawn_num && WaveCleared)
+        {
+            Paused = true;
+        }
     }
+
+    void PausedGame()
+    {
+
+    }
+
 }

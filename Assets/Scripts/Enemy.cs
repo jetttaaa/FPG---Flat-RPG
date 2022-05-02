@@ -16,37 +16,45 @@ public class Enemy : MonoBehaviour
     public GameObject damageTextPrefab;
     public string textToDisplay;
 
+    public GameObject spawning;
+
     Color origionalColor;
     public SpriteRenderer renderer;
     void Start()
     {
-        
+
         Player = GameObject.Find("Player");
         Hit_for = Player.GetComponent<Player>().AttackPower;
         origionalColor = renderer.color;
+        spawning = GameObject.FindGameObjectWithTag("MainBrain");
     }
 
     void Update()
     {
 
-        
-        if (Time.time > nextActionTime) {   }
-        if (attacking == true && (Time.time > nextActionTime)) {
+
+        if (Time.time > nextActionTime) { }
+        if (attacking == true && (Time.time > nextActionTime))
+        {
             nextActionTime = Time.time + period;
             Player.GetComponent<Player>().Damaged();
             Debug.Log("Attacked");
         };
-        if (hp <= 0) GameObject.Destroy(this.gameObject);
+        if (hp <= 0)
+        {
+            spawning.GetComponent<spawning>().killed++;
+            GameObject.Destroy(this.gameObject);
+        }
         if (Vector2.Distance(Player.transform.position, transform.position) > 1.1) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
-            
-        
+
+
     }
     public void Damaged()
     {
         GameObject DamageText = Instantiate(damageTextPrefab, this.transform);
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         hp -= Hit_for;
-        
+
     }
     void FlashRed()
     {
@@ -64,7 +72,7 @@ public class Enemy : MonoBehaviour
             FlashRed();
             Damaged();
         }
-        
+
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
