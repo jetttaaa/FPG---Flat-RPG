@@ -26,7 +26,7 @@ public class spawning : MonoBehaviour
     public static int points = 0;
     public static int shoots = 0;
 
-    public static int actNum = 0;
+    public int actNum = 0;
 
     private void Start()
     {
@@ -112,9 +112,10 @@ public class spawning : MonoBehaviour
         }
     }
 
-    void Upgrades()
+    public void Upgrades()
     {
-        UpgradeScreen.SetActive(true);
+        if (!UpgradeScreen.activeInHierarchy) UpgradeScreen.SetActive(true); else { UpgradeScreen.SetActive(false); WaveCounter++; actNum = 0; Paused = false; max_set = false; WaveCleared = false; killed = 0; Time.timeScale = 1; StartSpawning(); }
+
 
     }
 

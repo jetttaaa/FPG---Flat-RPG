@@ -32,9 +32,8 @@ public class Player : MonoBehaviour
 
         scale = new Vector3(damage, 0f, 0f);
         scaleLimiter = new Vector3(0f, 0f, 0f);
-        maxHP = new Vector3(hp, 200f, 200f);
+        maxHP = new Vector3(healthbarHP.transform.localScale.x, 200f, 200f);
         dump = new Vector3(1f, 1f, 0f);
-        healthbar.transform.localScale = maxHP;
         origionalColor = renderer.color;
 
     }
@@ -46,6 +45,8 @@ public class Player : MonoBehaviour
     {
         bulletSpeed = Stats.GetComponent<Stats>().bulletSpeed;
         hp = Stats.GetComponent<Stats>().hp;
+        maxHP = new Vector3(hp, 200f, 200f);
+        healthbar.transform.localScale = maxHP;
         damage = Stats.GetComponent<Stats>().damage;
         AttackPower = Stats.GetComponent<Stats>().AttackPower;
     }
