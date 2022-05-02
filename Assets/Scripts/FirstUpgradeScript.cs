@@ -25,7 +25,6 @@ public class FirstUpgradeScript : MonoBehaviour
         while (i < Upgrades.Length)
         {
             Upgrades[i] = Mathf.Round(Random.value * 10);
-            Debug.Log(Upgrades[i]);
             i++;
         }
     }
@@ -37,67 +36,67 @@ public class FirstUpgradeScript : MonoBehaviour
             case 0:
                 Stats.GetComponent<Stats>().AttackPower++;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 1:
                 Stats.GetComponent<Stats>().AttackPower += 3;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 2:
                 Stats.GetComponent<Stats>().AttackPower += 5;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 3:
                 Stats.GetComponent<Stats>().hp += 5;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 4:
                 Stats.GetComponent<Stats>().hp += 15;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 5:
                 Stats.GetComponent<Stats>().hp += 30;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 6:
                 Stats.GetComponent<Stats>().bulletSpeed += 5;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 7:
                 Stats.GetComponent<Stats>().bulletSpeed += 10;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 8:
                 Stats.GetComponent<Stats>().bulletSpeed += 15;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 9:
                 Stats.GetComponent<Stats>().hp_reg += 0.5f;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
             case 10:
                 Stats.GetComponent<Stats>().hp_reg += 1f;
                 player.GetComponent<Player>().UpdateStats();
-                MainBrain.GetComponent<spawning>().Upgrades();
+                MainBrain.GetComponent<spawning>().CloseUpgrades();
                 UpgradeNum++;
                 break;
 

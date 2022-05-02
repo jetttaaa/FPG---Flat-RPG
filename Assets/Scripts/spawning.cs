@@ -59,7 +59,7 @@ public class spawning : MonoBehaviour
         {
             Time.timeScale = 0;
         }
-        if (killed >= max_spawn_num && max_set) WaveCleared = true;
+        if (killed >= max_spawn_num && max_set) { WaveCleared = true; }
     }
     public void UnpauseInWave()
     {
@@ -114,15 +114,31 @@ public class spawning : MonoBehaviour
         else if (actNum >= max_spawn_num && WaveCleared)
         {
             Paused = true;
+            WaveCleared = false;
             Upgrades();
         }
     }
 
     public void Upgrades()
     {
-        if (!UpgradeScreen.activeInHierarchy) UpgradeScreen.SetActive(true); else { UpgradeScreen.SetActive(false); WaveCounter++; actNum = 0; Paused = false; max_set = false; WaveCleared = false; killed = 0; Time.timeScale = 1; StartSpawning(); }
+        if (!UpgradeScreen.activeInHierarchy)
+        {
 
+            UpgradeScreen.SetActive(true);
+        }
 
+    }
+    public void CloseUpgrades()
+    {
+
+        UpgradeScreen.SetActive(false);
+        WaveCounter++;
+        actNum = 0;
+        killed = 0;
+        max_set = false;
+        Paused = false;
+        Time.timeScale = 1;
+        StartSpawning();
     }
 
 }
