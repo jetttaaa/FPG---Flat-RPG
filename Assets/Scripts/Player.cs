@@ -83,12 +83,14 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
+        if (hp <= 0) Time.timeScale = 0;
         elapsed += Time.deltaTime;
         if (elapsed >= 1f)
         {
             elapsed = elapsed % 1f;
             hp_regen();
         }
+        if (bulletSpeed > 60) { bulletSpeed = 60; Stats.bulletSpeed = 60; }
         Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 lookAt = mouseScreenPosition;

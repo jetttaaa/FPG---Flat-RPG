@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game1");
     }
+    public void Stats()
+    {
+        SceneManager.LoadScene("Info");
+    }
     public void Exit()
     {
         Application.Quit();
