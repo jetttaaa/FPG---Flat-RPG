@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private float Hit_for = 0f;
     public GameObject damageTextPrefab;
     public string textToDisplay;
+    private GameObject thisObject;
 
     public GameObject spawning;
 
@@ -22,6 +23,8 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer renderer;
     void Start()
     {
+        thisObject = this.gameObject;
+
 
         Player = GameObject.Find("Player");
         Hit_for = Player.GetComponent<Player>().AttackPower;
@@ -31,7 +34,15 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        Vector3 PlayerPosition = Player.transform.position;
 
+        Vector3 lookAt = PlayerPosition;
+
+        float AngleRad = Mathf.Atan2(lookAt.y - this.transform.position.y, lookAt.x - this.transform.position.x);
+
+        float AngleDeg = (180 / Mathf.PI) * AngleRad;
+
+        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg - 90);
 
         if (Time.time > nextActionTime) { }
         if (attacking == true && (Time.time > nextActionTime))
@@ -42,7 +53,9 @@ public class Enemy : MonoBehaviour
         };
         if (hp <= 0)
         {
-            spawning.GetComponent<spawning>().killed++;
+            if (thisObject.name == "Triangle(Clone)") { spawning.GetComponent<spawning>().killed += 1f; } else spawning.GetComponent<spawning>().killed++;
+
+
             GameObject.Destroy(this.gameObject);
         }
         if (Vector2.Distance(Player.transform.position, transform.position) > 1.1) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);

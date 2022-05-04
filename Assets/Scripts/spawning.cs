@@ -17,7 +17,7 @@ public class spawning : MonoBehaviour
     public int WaveCounter;
     public bool WaveCleared = false;
     public bool Paused = false;
-    public int killed = 0;
+    public float killed = 0;
     private bool max_set;
 
     public int max_spawn_num;
@@ -50,6 +50,7 @@ public class spawning : MonoBehaviour
     }
     private void Update()
     {
+
         if (Input.GetButtonDown("Esc") && !Paused)
         {
             Paused = true;
@@ -130,7 +131,7 @@ public class spawning : MonoBehaviour
     }
     public void CloseUpgrades()
     {
-
+        WaveCleared = false;
         UpgradeScreen.SetActive(false);
         WaveCounter++;
         actNum = 0;
