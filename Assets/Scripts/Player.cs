@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
             elapsed = elapsed % 1f;
             hp_regen();
         }
-        if (bulletSpeed > 60) { bulletSpeed = 60; Stats.bulletSpeed = 60; }
+        if (bulletSpeed > 100) { bulletSpeed = 100; Stats.bulletSpeed = 100; }
         Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 lookAt = mouseScreenPosition;
