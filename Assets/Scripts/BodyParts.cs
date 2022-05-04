@@ -13,6 +13,7 @@ public class BodyParts : MonoBehaviour
         if (other.CompareTag("Bullet"))
         {
             enemy.Damaged();
+            other.GetComponent<Bullet>().pen--;
         }
 
     }

@@ -10,5 +10,6 @@ public class Stats : MonoBehaviour
     public float hp_reg;
     public float damage;
     public float AttackPower;
+    public float pen;
 
 }
