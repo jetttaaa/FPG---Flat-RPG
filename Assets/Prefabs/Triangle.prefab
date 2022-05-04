@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashTime: 0.1
+  attacking: 0
   period: 1
   damageTextPrefab: {fileID: 1622719692106802604, guid: 4abe907b3838e624ebcd32aafcef55ce, type: 3}
   textToDisplay: 10
@@ -217,7 +218,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.03
 --- !u!114 &1213954092214977017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +341,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.03
 --- !u!1 &7060748684584104984
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +453,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.03
 --- !u!114 &3118947568643200250
 MonoBehaviour:
   m_ObjectHideFlags: 0

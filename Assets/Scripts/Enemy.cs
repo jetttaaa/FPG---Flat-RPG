@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private GameObject Player;
     private float speed = 4f;
     public float flashTime;
-    private bool attacking = false;
+    public bool attacking = false;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     private float hp = 30f;
@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour
         {
             nextActionTime = Time.time + period;
             Player.GetComponent<Player>().Damaged();
-            Debug.Log("Attacked");
         };
         if (hp <= 0)
         {
@@ -64,7 +63,8 @@ public class Enemy : MonoBehaviour
     }
     public void Damaged()
     {
-        GameObject DamageText = Instantiate(damageTextPrefab, this.transform);
+        Vector3 spawningpos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        GameObject DamageText = Instantiate(damageTextPrefab, spawningpos, Quaternion.identity);
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         Hit_for = Player.GetComponent<Player>().AttackPower;
         hp -= Hit_for;
@@ -88,11 +88,5 @@ public class Enemy : MonoBehaviour
         }
 
     }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            attacking = true;
-        }
-    }
+
 }

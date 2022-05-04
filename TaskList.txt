@@ -34,7 +34,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			General - stats -> hp, max_hp, dmg, def(not yet)
+			General - stats -> hp, max_hp, dmg, def(not yet), hp_reg
 
 					Progress >> 30/100
 

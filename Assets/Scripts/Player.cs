@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
     public float bulletSpeed;
-    private float hp;
-    private float damage;
+    public float hp;
+    public float damage;
     public float AttackPower;
-    private float flashTime;
+    public float flashTime;
+    public float hp_reg;
+    public float max_hp;
+    float elapsed = 0f;
     public Rigidbody2D rb;
-    public GameObject healthbar;
-    public GameObject healthbarHP;
+    public Image healthBarImage;
     public GameObject bullet;
-    public GameObject Stats;
+    public Stats Stats;
 
     Color origionalColor;
     public SpriteRenderer renderer;
@@ -24,15 +28,16 @@ public class Player : MonoBehaviour
     private Vector3 maxHP;
     private void Awake()
     {
-        Stats = GameObject.FindGameObjectWithTag("Stats");
+        Stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         bulletSpeed = 1;
         hp = 1;
         damage = 1;
         AttackPower = 1;
+        hp_reg = 0;
+        max_hp = hp;
 
         scale = new Vector3(damage, 0f, 0f);
         scaleLimiter = new Vector3(0f, 0f, 0f);
-        maxHP = new Vector3(healthbarHP.transform.localScale.x, 200f, 200f);
         dump = new Vector3(1f, 1f, 0f);
         origionalColor = renderer.color;
 
@@ -41,21 +46,29 @@ public class Player : MonoBehaviour
     {
         UpdateStats();
     }
+    public void UpdateHealthBar()
+    {
+        healthBarImage.fillAmount = Mathf.Clamp(hp / max_hp, 0, 1f);
+    }
+    public void hp_regen()
+    {
+        if (hp < max_hp) hp += hp_reg;
+        UpdateHealthBar();
+    }
     public void UpdateStats()
     {
-        bulletSpeed = Stats.GetComponent<Stats>().bulletSpeed;
-        hp = Stats.GetComponent<Stats>().hp;
-        maxHP = new Vector3(hp, 200f, 200f);
-        healthbar.transform.localScale = maxHP;
-        damage = Stats.GetComponent<Stats>().damage;
-        AttackPower = Stats.GetComponent<Stats>().AttackPower;
+        hp_reg = Stats.hp_reg;
+        bulletSpeed = Stats.bulletSpeed;
+        hp = Stats.hp;
+        max_hp = Stats.max_hp;
+        damage = Stats.damage;
+        AttackPower = Stats.AttackPower;
     }
 
     public void Damaged()
     {
-        if (healthbarHP.transform.localScale.x > 0f) healthbarHP.transform.localScale -= scale;
-        if (healthbarHP.transform.localScale.x < 0f) healthbarHP.transform.localScale = scaleLimiter;
         hp -= damage;
+        UpdateHealthBar();
     }
     void FlashRed()
     {
@@ -70,6 +83,12 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
+        elapsed += Time.deltaTime;
+        if (elapsed >= 1f)
+        {
+            elapsed = elapsed % 1f;
+            hp_regen();
+        }
         Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 lookAt = mouseScreenPosition;
