@@ -40,17 +40,14 @@ public class spawning : MonoBehaviour
         StartSpawning();
         Time.timeScale = 1;
     }
-
     public async void StartSpawning()
     {
         max_spawn_num = (WaveCounter * 5);
         max_set = true;
         InvokeRepeating("SpawnTarget", 0, spawn_time);
-
     }
     private void Update()
     {
-
         if (Input.GetButtonDown("Esc") && !Paused)
         {
             Paused = true;
@@ -68,21 +65,16 @@ public class spawning : MonoBehaviour
         Paused = false;
         Time.timeScale = 1;
     }
-
     public void StopSpawning()
     {
-
         CancelInvoke("SpawnTarget");
-
     }
     bool IsCBetweenAB(Vector3 A, Vector3 B, Vector3 C)
     {
         return Vector3.Dot((B - A).normalized, (C - B).normalized) < 0f && Vector3.Dot((A - B).normalized, (C - A).normalized) < 0f;
     }
-
     private void SpawnTarget()
     {
-
         if (actNum < max_spawn_num)
         {
             var position1 = pos1.transform.position;
@@ -109,8 +101,6 @@ public class spawning : MonoBehaviour
                     position = new Vector3(randomX, randomY);
                 };
             } while (spawned == false);
-
-
         }
         else if (actNum >= max_spawn_num && WaveCleared)
         {
@@ -119,15 +109,12 @@ public class spawning : MonoBehaviour
             Upgrades();
         }
     }
-
     public void Upgrades()
     {
         if (!UpgradeScreen.activeInHierarchy)
         {
-
             UpgradeScreen.SetActive(true);
         }
-
     }
     public void CloseUpgrades()
     {
@@ -141,5 +128,4 @@ public class spawning : MonoBehaviour
         Time.timeScale = 1;
         StartSpawning();
     }
-
 }

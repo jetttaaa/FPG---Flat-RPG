@@ -15,14 +15,15 @@ public class Player : MonoBehaviour
     public float max_hp;
     public float multi;
     public float def;
-    float elapsed = 0f;
+    private float elapsed = 0f;
+
     public Rigidbody2D rb;
     public Image healthBarImage;
     public GameObject bullet;
     public Stats Stats;
+    public SpriteRenderer renderer;
 
     Color origionalColor;
-    public SpriteRenderer renderer;
 
     private Vector3 scale;
     private Vector3 dump;
@@ -39,16 +40,13 @@ public class Player : MonoBehaviour
         max_hp = hp;
         multi = 1;
         def = 0;
-
         scale = new Vector3(damage, 0f, 0f);
         scaleLimiter = new Vector3(0f, 0f, 0f);
         dump = new Vector3(1f, 1f, 0f);
         origionalColor = renderer.color;
-
     }
     private void Start()
     {
-
         UpdateStats();
     }
     public void UpdateHealthBar()
@@ -71,12 +69,10 @@ public class Player : MonoBehaviour
         AttackPower = Stats.AttackPower;
         multi = Mathf.Floor(Stats.multi);
     }
-
     public void Damaged()
     {
         if (damage < def) hp -= 1;
         else hp -= (damage - def);
-
         UpdateHealthBar();
     }
     void FlashRed()
@@ -88,8 +84,6 @@ public class Player : MonoBehaviour
     {
         renderer.color = origionalColor;
     }
-
-
     public void Update()
     {
         if (hp <= 0) Time.timeScale = 0;
@@ -101,23 +95,15 @@ public class Player : MonoBehaviour
         }
         if (bulletSpeed > 25) { bulletSpeed = 25; Stats.bulletSpeed = 25; }
         Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         Vector3 lookAt = mouseScreenPosition;
-
         float AngleRad = Mathf.Atan2(lookAt.y - this.transform.position.y, lookAt.x - this.transform.position.x);
-
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
-
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
-
         if (Input.GetButtonDown("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
         {
             FireMultishot(multi);
         }
-
     }
-
-
     private void FireMultishot(float multi)
     {
         GameObject Temporary_Bullet_Handler = Instantiate(bullet, transform.position, transform.rotation);
@@ -140,13 +126,8 @@ public class Player : MonoBehaviour
                 Temporary_Bullet_Handler.GetComponent<Rigidbody2D>().AddForce(Temporary_Bullet_Handler.transform.right * bulletSpeed);
                 Destroy(Temporary_Bullet_Handler, 3.0f);
             }
-
-
         }
         //Play the sound when the bullet is fired.
         //AudioSource.PlayClipAtPoint(fireBulletSound, Camera.main.transform.position);
-
-
     }
-
 }

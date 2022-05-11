@@ -16,6 +16,7 @@ public class Stats : MonoBehaviour
     public float def;
 
     public Text stats;
+
     private void UpdateStats()
     {
         stats.text = "Max HP: " + max_hp + "\nAttack Power: " + AttackPower + "\n Bullet Speed: " + bulletSpeed + "\n HP Regen: " + hp_reg + "\n Penetration: " + pen + "\n Multishot: " + (multi - 1);

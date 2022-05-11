@@ -6,8 +6,6 @@ public class BodyParts : MonoBehaviour
 {
     private Enemy enemy;
     private void Start() { enemy = GetComponentInParent<Enemy>(); }
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
@@ -15,7 +13,6 @@ public class BodyParts : MonoBehaviour
             enemy.Damaged();
             other.GetComponent<Bullet>().pen--;
         }
-
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -24,5 +21,4 @@ public class BodyParts : MonoBehaviour
             enemy.attacking = true;
         }
     }
-
 }

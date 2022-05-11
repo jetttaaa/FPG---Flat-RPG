@@ -16,7 +16,6 @@ public class FirstUpgradeScript : MonoBehaviour
     private GameObject UpgradeScreen;
     public GameObject[] UpgradeIcons = new GameObject[14];
 
-
     private void Start()
     {
         Stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
@@ -32,7 +31,6 @@ public class FirstUpgradeScript : MonoBehaviour
             i++;
         }
     }
-
     public void Upgrade()
     {
         switch (Upgrades[UpgradeNum])
@@ -170,9 +168,7 @@ public class FirstUpgradeScript : MonoBehaviour
                 break;
         }
     }
-
     int i = 0;
-
     void Update()
     {
         while (i < UpgradeIcons.Length && reset == true)
