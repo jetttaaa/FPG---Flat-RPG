@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
         {
             if (thisObject.name == "Triangle(Clone)") { spawning.GetComponent<spawning>().killed += 1f; } else spawning.GetComponent<spawning>().killed++;
 
-
             GameObject.Destroy(this.gameObject);
         }
         if (Vector2.Distance(Player.transform.position, transform.position) > 1.1) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);

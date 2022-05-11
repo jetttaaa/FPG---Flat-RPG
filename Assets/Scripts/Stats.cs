@@ -13,6 +13,7 @@ public class Stats : MonoBehaviour
     public float AttackPower;
     public float pen;
     public float multi;
+    public float def;
 
     public Text stats;
     private void UpdateStats()

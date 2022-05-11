@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float hp_reg;
     public float max_hp;
     public float multi;
+    public float def;
     float elapsed = 0f;
     public Rigidbody2D rb;
     public Image healthBarImage;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         hp_reg = 0;
         max_hp = hp;
         multi = 1;
+        def = 0;
 
         scale = new Vector3(damage, 0f, 0f);
         scaleLimiter = new Vector3(0f, 0f, 0f);
@@ -65,13 +67,16 @@ public class Player : MonoBehaviour
         hp = Stats.hp;
         max_hp = Stats.max_hp;
         damage = Stats.damage;
+        def = Stats.def;
         AttackPower = Stats.AttackPower;
         multi = Mathf.Floor(Stats.multi);
     }
 
     public void Damaged()
     {
-        hp -= damage;
+        if (damage < def) hp -= 1;
+        else hp -= (damage - def);
+
         UpdateHealthBar();
     }
     void FlashRed()

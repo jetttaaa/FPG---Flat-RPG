@@ -24,15 +24,11 @@ public class FirstUpgradeScript : MonoBehaviour
         MainBrain = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>();
         UpgradeScreen = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().UpgradeScreen;
 
-
         Random.seed = Random.Range(1, 10000);
         int i = 0;
         while (i < Upgrades.Length)
         {
-
-            Upgrades[i] = Random.Range(0, 13); // Mathf.Round(Random.value * 10);
-
-
+            Upgrades[i] = Random.Range(0, 16);
             i++;
         }
     }
@@ -44,7 +40,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 0:
                 UpgradeIcons[0].SetActive(false);
                 Stats.AttackPower++;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -53,7 +48,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 1:
                 UpgradeIcons[1].SetActive(false);
                 Stats.AttackPower += 3;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -62,7 +56,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 2:
                 UpgradeIcons[2].SetActive(false);
                 Stats.AttackPower += 5;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -71,7 +64,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 3:
                 UpgradeIcons[3].SetActive(false);
                 Stats.max_hp += 5;
-
                 player.UpdateStats();
                 player.hp = player.max_hp;
                 MainBrain.CloseUpgrades();
@@ -81,7 +73,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 4:
                 UpgradeIcons[4].SetActive(false);
                 Stats.max_hp += 15;
-
                 player.UpdateStats();
                 player.hp = player.max_hp;
                 MainBrain.CloseUpgrades();
@@ -91,7 +82,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 5:
                 UpgradeIcons[5].SetActive(false);
                 Stats.max_hp += 30;
-
                 player.UpdateStats();
                 player.hp = player.max_hp;
                 MainBrain.CloseUpgrades();
@@ -101,7 +91,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 6:
                 UpgradeIcons[6].SetActive(false);
                 Stats.bulletSpeed += 0.1f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -110,7 +99,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 7:
                 UpgradeIcons[7].SetActive(false);
                 Stats.bulletSpeed += 0.3f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -119,7 +107,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 8:
                 UpgradeIcons[8].SetActive(false);
                 Stats.bulletSpeed += 0.5f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -128,7 +115,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 9:
                 UpgradeIcons[9].SetActive(false);
                 Stats.hp_reg += 0.5f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -137,7 +123,6 @@ public class FirstUpgradeScript : MonoBehaviour
             case 10:
                 UpgradeIcons[10].SetActive(false);
                 Stats.hp_reg += 1f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -146,23 +131,43 @@ public class FirstUpgradeScript : MonoBehaviour
             case 11:
                 UpgradeIcons[11].SetActive(false);
                 Stats.pen += 0.25f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
                 UpgradeNum++;
-
                 break;
             case 12:
                 UpgradeIcons[12].SetActive(false);
                 Stats.multi += 0.25f;
-
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
                 UpgradeNum++;
                 break;
-
+            case 13:
+                UpgradeIcons[13].SetActive(false);
+                Stats.def += 1f;
+                player.UpdateStats();
+                MainBrain.CloseUpgrades();
+                reset = true;
+                UpgradeNum++;
+                break;
+            case 14:
+                UpgradeIcons[14].SetActive(false);
+                Stats.def += 2f;
+                player.UpdateStats();
+                MainBrain.CloseUpgrades();
+                reset = true;
+                UpgradeNum++;
+                break;
+            case 15:
+                UpgradeIcons[15].SetActive(false);
+                Stats.def += 3f;
+                player.UpdateStats();
+                MainBrain.CloseUpgrades();
+                reset = true;
+                UpgradeNum++;
+                break;
         }
     }
 
@@ -192,8 +197,10 @@ public class FirstUpgradeScript : MonoBehaviour
             if (Upgrades[UpgradeNum] == 10) { UpgradeText.text = "HP Regen\n+1f"; UpgradeIcons[10].SetActive(true); }
             if (Upgrades[UpgradeNum] == 11) { UpgradeText.text = "Penetration\n+1/4"; UpgradeIcons[11].SetActive(true); }
             if (Upgrades[UpgradeNum] == 12) { UpgradeText.text = "Multishot\n+1/4"; UpgradeIcons[12].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 13) { UpgradeText.text = "Defence\n+1"; UpgradeIcons[13].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 14) { UpgradeText.text = "Defence\n+2"; UpgradeIcons[14].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 15) { UpgradeText.text = "Defence\n+2"; UpgradeIcons[15].SetActive(true); }
             reset = true;
         }
-
     }
 }
