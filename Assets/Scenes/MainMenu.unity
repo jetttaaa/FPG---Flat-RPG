@@ -688,7 +688,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8465931564182439432, guid: 67fe96a45b2099d4288bf9bc6a1c7e3c, type: 3}
       propertyPath: m_Text
-      value: Very much not done yet
+      value: 'Added multishot
+
+        Added penetration'
       objectReference: {fileID: 0}
     - target: {fileID: 8465931564182439433, guid: 67fe96a45b2099d4288bf9bc6a1c7e3c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1043,7 +1045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '*Insert name*'
+  m_Text: Budget Survival
 --- !u!224 &8758684584579746081
 RectTransform:
   m_ObjectHideFlags: 0

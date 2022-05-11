@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public float flashTime;
     public float hp_reg;
     public float max_hp;
+    public float multi;
     float elapsed = 0f;
     public Rigidbody2D rb;
     public Image healthBarImage;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
         AttackPower = 1;
         hp_reg = 0;
         max_hp = hp;
+        multi = 1;
 
         scale = new Vector3(damage, 0f, 0f);
         scaleLimiter = new Vector3(0f, 0f, 0f);
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+
         UpdateStats();
     }
     public void UpdateHealthBar()
@@ -63,6 +66,7 @@ public class Player : MonoBehaviour
         max_hp = Stats.max_hp;
         damage = Stats.damage;
         AttackPower = Stats.AttackPower;
+        multi = Mathf.Floor(Stats.multi);
     }
 
     public void Damaged()
@@ -90,7 +94,7 @@ public class Player : MonoBehaviour
             elapsed = elapsed % 1f;
             hp_regen();
         }
-        if (bulletSpeed > 100) { bulletSpeed = 100; Stats.bulletSpeed = 100; }
+        if (bulletSpeed > 25) { bulletSpeed = 25; Stats.bulletSpeed = 25; }
         Vector3 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 lookAt = mouseScreenPosition;
@@ -100,16 +104,44 @@ public class Player : MonoBehaviour
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
 
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
+
         if (Input.GetButtonDown("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
         {
-            Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            Vector2 myPos = new Vector2(transform.position.x, transform.position.y);
-            Vector2 direction = target - myPos;
-            direction.Normalize();
-            Quaternion rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-            GameObject projectile = (GameObject)Instantiate(bullet, myPos, rotation);
-            projectile.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+            FireMultishot(multi);
         }
 
     }
+
+
+    private void FireMultishot(float multi)
+    {
+        GameObject Temporary_Bullet_Handler = Instantiate(bullet, transform.position, transform.rotation);
+        Temporary_Bullet_Handler.transform.Rotate(Vector3.forward);
+        Temporary_Bullet_Handler.GetComponent<Rigidbody2D>().AddForce(Temporary_Bullet_Handler.transform.right * bulletSpeed);
+        Destroy(Temporary_Bullet_Handler, 3.0f);
+        for (int i = 1; i < multi; i++)
+        {
+            if (i % 2 == 0)
+            {
+                Temporary_Bullet_Handler = Instantiate(bullet, transform.position, transform.rotation);
+                Temporary_Bullet_Handler.transform.Rotate(Vector3.forward * (i * 2));
+                Temporary_Bullet_Handler.GetComponent<Rigidbody2D>().AddForce(Temporary_Bullet_Handler.transform.right * bulletSpeed);
+                Destroy(Temporary_Bullet_Handler, 3.0f);
+            }
+            else
+            {
+                Temporary_Bullet_Handler = Instantiate(bullet, transform.position, transform.rotation);
+                Temporary_Bullet_Handler.transform.Rotate(Vector3.forward * -(i * 2));
+                Temporary_Bullet_Handler.GetComponent<Rigidbody2D>().AddForce(Temporary_Bullet_Handler.transform.right * bulletSpeed);
+                Destroy(Temporary_Bullet_Handler, 3.0f);
+            }
+
+
+        }
+        //Play the sound when the bullet is fired.
+        //AudioSource.PlayClipAtPoint(fireBulletSound, Camera.main.transform.position);
+
+
+    }
+
 }

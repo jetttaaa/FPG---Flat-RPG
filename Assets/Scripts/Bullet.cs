@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        pen = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>().pen;
+        pen = Mathf.Floor(GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>().pen);
     }
     private void Update()
     {
