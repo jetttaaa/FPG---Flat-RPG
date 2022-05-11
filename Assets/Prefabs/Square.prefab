@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4074430638575845757
 SpriteRenderer:
@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashTime: 0.1
+  attacking: 0
   period: 1
   damageTextPrefab: {fileID: 1622719692106802604, guid: 4abe907b3838e624ebcd32aafcef55ce, type: 3}
   textToDisplay: 10
+  spawning: {fileID: 0}
   renderer: {fileID: 4074430638575845757}
 --- !u!61 &4074430638575845759
 BoxCollider2D:
@@ -128,4 +130,4 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.03
