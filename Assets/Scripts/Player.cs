@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
                 Destroy(Temporary_Bullet_Handler, 3.0f);
             }
         }
-        //Play the sound when the bullet is fired.
         //AudioSource.PlayClipAtPoint(fireBulletSound, Camera.main.transform.position);
     }
 }
