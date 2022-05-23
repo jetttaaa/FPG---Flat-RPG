@@ -63,7 +63,6 @@ public class FirstUpgradeScript : MonoBehaviour
                 UpgradeIcons[3].SetActive(false);
                 Stats.max_hp += 5;
                 player.UpdateStats();
-                player.hp = player.max_hp;
                 MainBrain.CloseUpgrades();
                 reset = true;
                 UpgradeNum++;
@@ -72,7 +71,6 @@ public class FirstUpgradeScript : MonoBehaviour
                 UpgradeIcons[4].SetActive(false);
                 Stats.max_hp += 15;
                 player.UpdateStats();
-                player.hp = player.max_hp;
                 MainBrain.CloseUpgrades();
                 reset = true;
                 UpgradeNum++;
@@ -81,7 +79,6 @@ public class FirstUpgradeScript : MonoBehaviour
                 UpgradeIcons[5].SetActive(false);
                 Stats.max_hp += 30;
                 player.UpdateStats();
-                player.hp = player.max_hp;
                 MainBrain.CloseUpgrades();
                 reset = true;
                 UpgradeNum++;
@@ -126,9 +123,10 @@ public class FirstUpgradeScript : MonoBehaviour
                 reset = true;
                 UpgradeNum++;
                 break;
+
             case 11:
                 UpgradeIcons[11].SetActive(false);
-                Stats.pen += 0.25f;
+                Stats.hp_reg += 2f;
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -136,7 +134,7 @@ public class FirstUpgradeScript : MonoBehaviour
                 break;
             case 12:
                 UpgradeIcons[12].SetActive(false);
-                Stats.multi += 0.25f;
+                Stats.pen += 0.25f;
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -144,7 +142,7 @@ public class FirstUpgradeScript : MonoBehaviour
                 break;
             case 13:
                 UpgradeIcons[13].SetActive(false);
-                Stats.def += 1f;
+                Stats.multi += 0.25f;
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -152,7 +150,7 @@ public class FirstUpgradeScript : MonoBehaviour
                 break;
             case 14:
                 UpgradeIcons[14].SetActive(false);
-                Stats.def += 2f;
+                Stats.def += 1f;
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
                 reset = true;
@@ -160,6 +158,14 @@ public class FirstUpgradeScript : MonoBehaviour
                 break;
             case 15:
                 UpgradeIcons[15].SetActive(false);
+                Stats.def += 2f;
+                player.UpdateStats();
+                MainBrain.CloseUpgrades();
+                reset = true;
+                UpgradeNum++;
+                break;
+            case 16:
+                UpgradeIcons[16].SetActive(false);
                 Stats.def += 3f;
                 player.UpdateStats();
                 MainBrain.CloseUpgrades();
@@ -191,11 +197,12 @@ public class FirstUpgradeScript : MonoBehaviour
             if (Upgrades[UpgradeNum] == 8) { UpgradeText.text = "Bullet Speed\n+0.5"; UpgradeIcons[5].SetActive(true); }
             if (Upgrades[UpgradeNum] == 9) { UpgradeText.text = "HP Regen\n+0.5f"; UpgradeIcons[9].SetActive(true); }
             if (Upgrades[UpgradeNum] == 10) { UpgradeText.text = "HP Regen\n+1f"; UpgradeIcons[10].SetActive(true); }
-            if (Upgrades[UpgradeNum] == 11) { UpgradeText.text = "Penetration\n+1/4"; UpgradeIcons[11].SetActive(true); }
-            if (Upgrades[UpgradeNum] == 12) { UpgradeText.text = "Multishot\n+1/4"; UpgradeIcons[12].SetActive(true); }
-            if (Upgrades[UpgradeNum] == 13) { UpgradeText.text = "Defence\n+1"; UpgradeIcons[13].SetActive(true); }
-            if (Upgrades[UpgradeNum] == 14) { UpgradeText.text = "Defence\n+2"; UpgradeIcons[14].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 11) { UpgradeText.text = "HP Regen\n+3f"; UpgradeIcons[11].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 12) { UpgradeText.text = "Penetration\n+1/4"; UpgradeIcons[12].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 13) { UpgradeText.text = "Multishot\n+1/4"; UpgradeIcons[13].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 14) { UpgradeText.text = "Defence\n+1"; UpgradeIcons[14].SetActive(true); }
             if (Upgrades[UpgradeNum] == 15) { UpgradeText.text = "Defence\n+2"; UpgradeIcons[15].SetActive(true); }
+            if (Upgrades[UpgradeNum] == 16) { UpgradeText.text = "Defence\n+2"; UpgradeIcons[16].SetActive(true); }
             reset = true;
         }
     }

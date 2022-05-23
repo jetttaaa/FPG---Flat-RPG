@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public Stats Stats;
     public SpriteRenderer renderer;
+    private spawning controller;
 
     Color origionalColor;
 
@@ -32,11 +33,12 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        controller = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>();
         bulletSpeed = 1;
         hp = 1;
         damage = 1;
         AttackPower = 1;
-        hp_reg = 0;
+        hp_reg = 0.5f;
         max_hp = hp;
         multi = 1;
         def = 0;
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        hp = Stats.hp;
         UpdateStats();
     }
     public void UpdateHealthBar()
@@ -62,7 +65,6 @@ public class Player : MonoBehaviour
     {
         hp_reg = Stats.hp_reg;
         bulletSpeed = Stats.bulletSpeed;
-        hp = Stats.hp;
         max_hp = Stats.max_hp;
         damage = Stats.damage;
         def = Stats.def;
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (hp <= 0) Time.timeScale = 0;
+        if (hp <= 0) { Time.timeScale = 0; controller.GameOver.SetActive(true); }
         elapsed += Time.deltaTime;
         if (elapsed >= 1f)
         {

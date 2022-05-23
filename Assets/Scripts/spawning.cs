@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class spawning : MonoBehaviour
@@ -13,7 +14,9 @@ public class spawning : MonoBehaviour
     public GameObject nopos2;
     public GameObject target;
     public GameObject PausedInWaveMenu;
+    public GameObject GameOver;
     public GameObject UpgradeScreen;
+    public SaveGame saveStuff;
     public int WaveCounter;
     public bool WaveCleared = false;
     public bool Paused = false;
@@ -23,13 +26,15 @@ public class spawning : MonoBehaviour
     public int max_spawn_num;
     public float spawn_time = 1f;
 
-    public static int points = 0;
-    public static int shoots = 0;
+    public float coins;
+    public Text coinsText;
 
     public int actNum = 0;
 
     private void Start()
     {
+        saveStuff = GetComponent<SaveGame>();
+        saveStuff.LoadFile();
         pos1.SetActive(false);
         pos2.SetActive(false);
         Paused = true;
@@ -58,6 +63,12 @@ public class spawning : MonoBehaviour
             Time.timeScale = 0;
         }
         if (killed >= max_spawn_num && max_set) { WaveCleared = true; }
+    }
+
+    public void SaveCoins()
+    {
+        saveStuff.money += coins;
+        saveStuff.SaveFile();
     }
     public void UnpauseInWave()
     {
@@ -121,6 +132,7 @@ public class spawning : MonoBehaviour
         WaveCleared = false;
         UpgradeScreen.SetActive(false);
         WaveCounter++;
+        coinsText.text = "Earned " + (coins += WaveCounter) + " coins";
         actNum = 0;
         killed = 0;
         max_set = false;

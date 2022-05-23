@@ -556,7 +556,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 29}
-  m_SizeDelta: {x: 910.4, y: 370}
+  m_SizeDelta: {x: 1049.6, y: 370}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6889717198993381769
 MonoBehaviour:
@@ -591,9 +591,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Bullet Speed\t->\t\tHow fast the bullets go\n\nHP\t->\t\tHow much HP can
-    you have\n\nHP Regen\t->\t\tHow much HP you regenerate every second\n\nAttack
-    Power\t-> How much damage you deal to the enemy before armor"
+  m_Text: "Bullet Speed\t\t->\t\tHow fast the bullets go\n\nHP\t\t->\t\tHow much
+    HP can you have\n\nHP Regen\t->\t\tHow much HP you regenerate every second\n\nAttack
+    Power\t\t-> \t\tHow much damage you deal to the enemy\n\nPenetration\t-> \t\tHow
+    many enemies can you bullet hit before breaking\n\nMultishot\t-> \t\tHow many
+    projectiles you fire"
 --- !u!1 &6889717198993381771
 GameObject:
   m_ObjectHideFlags: 0
