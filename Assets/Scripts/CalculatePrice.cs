@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CalculatePrice : MonoBehaviour
 {
     float number;
+    float originalnumber;
     float upgradeAmount;
     public bool special;
     public bool pen;
@@ -22,6 +23,7 @@ public class CalculatePrice : MonoBehaviour
 
     private void Start()
     {
+        originalnumber = number;
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalUpgrades>();
         save = GameObject.FindGameObjectWithTag("GameController").GetComponent<SaveGame>();
 
@@ -29,49 +31,54 @@ public class CalculatePrice : MonoBehaviour
     }
     public void Calculate(Text upgradesText, Text targetText)
     {
+        controller.UpdateTexts();
         number = float.Parse(targetText.text);
         upgradeAmount = float.Parse(upgradesText.text);
         if (!special)
         {
-            if (upgradeAmount <= 0)
-            {
 
-            }
-            else
+            number = 10;
+            for (int i = 0; i < upgradeAmount; i++)
             {
-
                 number += number / 5;
-                number = Mathf.Floor(number);
             }
+
+            number = Mathf.Floor(number);
+
             targetText.text = number.ToString();
         }
         else
         {
-            if (upgradeAmount <= 0)
-            {
 
-            }
-            else
+            if (pen) number = 50;
+            if (multi) number = 100;
+            for (int i = 0; i < upgradeAmount; i++)
             {
                 number *= 5;
-                number = Mathf.Floor(number);
             }
+            number = Mathf.Floor(number);
+
             targetText.text = number.ToString();
 
         }
     }
     public void CalculateButton()
     {
-        if (pen) { controller.PenLVL++; save.PenLVL++; }
-        if (multi) { controller.Multi++; save.Multi++; }
-        if (hp) { controller.HP++; save.HP++; }
-        if (hpREG) { controller.HP_REG++; save.HP_REG++; }
-        if (damage) { controller.Dmg++; save.Dmg++; }
-        if (speed) { controller.BulSp++; save.BulSp++; }
-        controller.Money -= float.Parse(cost.text);
-        save.money -= float.Parse(cost.text);
+        if (save.money >= float.Parse(cost.text) && controller.Money >= float.Parse(cost.text))
+        {
+            if (pen) { controller.PenLVL++; save.PenLVL++; }
+            if (multi) { controller.Multi++; save.Multi++; }
+            if (hp) { controller.HP++; save.HP++; }
+            if (hpREG) { controller.HP_REG++; save.HP_REG++; }
+            if (damage) { controller.Dmg++; save.Dmg++; }
+            if (speed) { controller.BulSp++; save.BulSp++; }
+            controller.Money -= float.Parse(cost.text);
+            save.money -= float.Parse(cost.text);
 
-        Calculate(upgradeText, cost);
-        controller.UpdateTexts();
+            Calculate(upgradeText, cost);
+            controller.UpdateTexts();
+
+        }
+
     }
 }

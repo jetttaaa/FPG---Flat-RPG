@@ -45,33 +45,33 @@ public class GlobalUpgrades : MonoBehaviour
     {
         Money = upgradeLoad.money;
         PenLVL = upgradeLoad.PenLVL;
-        PenLVLcost = upgradeLoad.PenLVLcost;
+
         Multi = upgradeLoad.Multi;
-        Multicost = upgradeLoad.Multicost;
+
         Dmg = upgradeLoad.Dmg;
-        Dmgcost = upgradeLoad.Dmgcost;
+
         BulSp = upgradeLoad.BulSp;
-        BulSpcost = upgradeLoad.BulSpcost;
+
         HP = upgradeLoad.HP;
-        HPcost = upgradeLoad.HPcost;
+
         HP_REG = upgradeLoad.HP_REG;
-        HP_REGcost = upgradeLoad.HP_REGcost;
+
     }
     public void UpdateTexts()
     {
         moneys.text = Money.ToString() + "c";
         PenLVLText.text = PenLVL.ToString();
-        PenLVLTextcost.text = PenLVLcost.ToString();
+
         MultiText.text = Multi.ToString();
-        MultiTextcost.text = Multicost.ToString();
+
         DmgText.text = Dmg.ToString();
-        DmgTextcost.text = Dmgcost.ToString();
+
         BulSpText.text = BulSp.ToString();
-        BulSpTextcost.text = BulSpcost.ToString();
+
         HPText.text = HP.ToString();
-        HPTextcost.text = HPcost.ToString();
+
         HP_REGText.text = HP_REG.ToString();
-        HP_REGTextcost.text = HP_REGcost.ToString();
+
     }
 
 
