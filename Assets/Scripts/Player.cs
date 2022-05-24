@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float multi;
     public float def;
     private float elapsed = 0f;
+    public bool boughtAuto = false;
 
     public Rigidbody2D rb;
     public Image healthBarImage;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     public Stats Stats;
     public SpriteRenderer renderer;
     private spawning controller;
+    private AudioSource _audiosource;
 
     Color origionalColor;
 
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     {
         Stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         controller = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>();
+        _audiosource = GetComponent<AudioSource>();
         bulletSpeed = 1;
         hp = 1;
         damage = 1;
@@ -101,10 +104,23 @@ public class Player : MonoBehaviour
         float AngleRad = Mathf.Atan2(lookAt.y - this.transform.position.y, lookAt.x - this.transform.position.x);
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
-        if (Input.GetButtonDown("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
+        if (!boughtAuto)
         {
-            FireMultishot(multi);
+            if (Input.GetButtonDown("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
+            {
+                _audiosource.Play();
+                FireMultishot(multi);
+            }
         }
+        else
+        {
+            if (Input.GetButton("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
+            {
+                _audiosource.Play();
+                FireMultishot(multi);
+            }
+        }
+
     }
     private void FireMultishot(float multi)
     {

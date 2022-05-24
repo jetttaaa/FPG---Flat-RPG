@@ -15,14 +15,17 @@ public class CalculatePrice : MonoBehaviour
     public bool hpREG;
     public bool damage;
     public bool speed;
+    public bool defence;
     public GlobalUpgrades controller;
     public SaveGame save;
+    public BuyUpgradeSound soundPlay;
 
     public Text upgradeText;
     public Text cost;
 
     private void Start()
     {
+        soundPlay = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BuyUpgradeSound>();
         originalnumber = number;
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalUpgrades>();
         save = GameObject.FindGameObjectWithTag("GameController").GetComponent<SaveGame>();
@@ -72,13 +75,18 @@ public class CalculatePrice : MonoBehaviour
             if (hpREG) { controller.HP_REG++; save.HP_REG++; }
             if (damage) { controller.Dmg++; save.Dmg++; }
             if (speed) { controller.BulSp++; save.BulSp++; }
+            if (defence) { controller.Def++; save.def++; }
             controller.Money -= float.Parse(cost.text);
             save.money -= float.Parse(cost.text);
 
             Calculate(upgradeText, cost);
+            soundPlay.PlaySoundUpgrade();
+
             controller.UpdateTexts();
 
         }
+        else { soundPlay.PlayError(); }
+
 
     }
 }
