@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     Color origionalColor;
     private float nextActionTime = 0.0f;
     public float period = 0.01f;
-    public int UpgradeNum = 0;
+    public int UpgradeNum = 1;
 
     private Vector3 scale;
     private Vector3 dump;

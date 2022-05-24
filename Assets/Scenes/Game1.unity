@@ -320,7 +320,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 62628d74d7b73dc4d99ddee1810cbf3d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2922,6 +2922,7 @@ MonoBehaviour:
   Stats: {fileID: 0}
   renderer: {fileID: 1068422778}
   period: 1
+  UpgradeNum: 1
 --- !u!212 &1068422778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3018,7 +3019,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 66d6fa31fe8096549a95f9d5cb31dd49, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.03
+  m_Volume: 0.02
   m_Pitch: 0.8
   Loop: 0
   Mute: 0
