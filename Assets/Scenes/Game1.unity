@@ -2816,6 +2816,7 @@ MonoBehaviour:
   HP: 0
   HP_REG: 0
   def: 0
+  auto: 0
 --- !u!114 &1049220910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,6 +2921,7 @@ MonoBehaviour:
   bullet: {fileID: 5716678328722720871, guid: e1135edd85345c54bbe7cdfc02df24e0, type: 3}
   Stats: {fileID: 0}
   renderer: {fileID: 1068422778}
+  period: 1
 --- !u!212 &1068422778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3016,13 +3018,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 66d6fa31fe8096549a95f9d5cb31dd49, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.03
   m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5273,13 +5275,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90df3ea4a909b214ca399431c997e186, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

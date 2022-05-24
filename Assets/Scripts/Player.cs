@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float max_hp;
     public float multi;
     public float def;
+
     private float elapsed = 0f;
     public bool boughtAuto = false;
 
@@ -27,6 +28,9 @@ public class Player : MonoBehaviour
     private AudioSource _audiosource;
 
     Color origionalColor;
+    private float nextActionTime = 0.0f;
+    public float period = 0.01f;
+    public int UpgradeNum = 0;
 
     private Vector3 scale;
     private Vector3 dump;
@@ -49,10 +53,12 @@ public class Player : MonoBehaviour
         scaleLimiter = new Vector3(0f, 0f, 0f);
         dump = new Vector3(1f, 1f, 0f);
         origionalColor = renderer.color;
+
     }
     private void Start()
     {
         hp = Stats.hp;
+        if (GameObject.FindGameObjectWithTag("MainBrain").GetComponent<SaveGame>().auto) boughtAuto = true;
         UpdateStats();
     }
     public void UpdateHealthBar()
@@ -114,11 +120,18 @@ public class Player : MonoBehaviour
         }
         else
         {
+
+
             if (Input.GetButton("Fire1") && !GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().Paused)
             {
-                _audiosource.Play();
-                FireMultishot(multi);
+                if (Time.time > nextActionTime)
+                {
+                    nextActionTime = Time.time + (period / 10);
+                    _audiosource.Play();
+                    FireMultishot(multi);
+                }
             }
+
         }
 
     }
@@ -145,6 +158,5 @@ public class Player : MonoBehaviour
                 Destroy(Temporary_Bullet_Handler, 3.0f);
             }
         }
-        //AudioSource.PlayClipAtPoint(fireBulletSound, Camera.main.transform.position);
     }
 }

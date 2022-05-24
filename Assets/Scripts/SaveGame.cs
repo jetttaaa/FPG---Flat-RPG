@@ -17,6 +17,7 @@ public class SaveGame : MonoBehaviour
     public float HP = 0f;
     public float HP_REG = 0f;
     public float def = 0f;
+    public bool auto = false;
 
     public void SaveFile()
     {
@@ -26,7 +27,7 @@ public class SaveGame : MonoBehaviour
         if (File.Exists(destination)) file = File.OpenWrite(destination);
         else file = File.Create(destination);
 
-        GameData data = new GameData(HighScore, currentName, money, PenLVL, Multi, Dmg, BulSp, HP, HP_REG, def);
+        GameData data = new GameData(HighScore, currentName, money, PenLVL, Multi, Dmg, BulSp, HP, HP_REG, def, auto);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, data);
         file.Close();
@@ -58,5 +59,6 @@ public class SaveGame : MonoBehaviour
         HP = data.HP;
         HP_REG = data.HP_REG;
         def = data.Def;
+        auto = data.auto;
     }
 }

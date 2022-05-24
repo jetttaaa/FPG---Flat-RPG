@@ -67,6 +67,10 @@ public class spawning : MonoBehaviour
 
     public void SaveCoins()
     {
+        for (int i = 1; i < WaveCounter; i++)
+        {
+            coins += coins / 20;
+        }
         saveStuff.money += coins;
         saveStuff.SaveFile();
     }

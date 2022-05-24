@@ -14,6 +14,7 @@ public class GlobalUpgrades : MonoBehaviour
     public float HP = 0f;
     public float HP_REG = 0f;
     public float Def = 0f;
+    public bool auto = false;
 
     public Text moneys;
     public Text PenLVLText;
@@ -34,6 +35,7 @@ public class GlobalUpgrades : MonoBehaviour
     }
     public void updateUpgrades()
     {
+
         Money = upgradeLoad.money;
         PenLVL = upgradeLoad.PenLVL;
         Multi = upgradeLoad.Multi;
@@ -42,6 +44,7 @@ public class GlobalUpgrades : MonoBehaviour
         HP = upgradeLoad.HP;
         HP_REG = upgradeLoad.HP_REG;
         Def = upgradeLoad.def;
+        auto = upgradeLoad.auto;
     }
     public void UpdateTexts()
     {

@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         hitsound = GetComponent<AudioSource>();
         _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
         WaveCount = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().WaveCounter;
-        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 5);
+        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 6.66f);
         thisObject = this.gameObject;
         Player = GameObject.Find("Player");
         Hit_for = Player.GetComponent<Player>().AttackPower;

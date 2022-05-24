@@ -17,8 +17,9 @@ public class GameData
     public float HP;
     public float HP_REG;
     public float Def;
+    public bool auto;
 
-    public GameData(float Hscore, string nick, float coins, float Pen, float Mult, float Damage, float Speed, float Health, float Regen, float defence)
+    public GameData(float Hscore, string nick, float coins, float Pen, float Mult, float Damage, float Speed, float Health, float Regen, float defence, bool automatic)
     {
         score = Hscore;
         name = nick;
@@ -30,5 +31,6 @@ public class GameData
         HP = Health;
         HP_REG = Regen;
         Def = defence;
+        auto = automatic;
     }
 }

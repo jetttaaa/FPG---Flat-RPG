@@ -617,6 +617,7 @@ MonoBehaviour:
   HP: 0
   HP_REG: 0
   def: 0
+  auto: 0
 --- !u!1 &943309605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +1100,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 34987f99262f67841a3f97d9a4504502, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
