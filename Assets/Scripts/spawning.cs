@@ -67,10 +67,7 @@ public class spawning : MonoBehaviour
 
     public void SaveCoins()
     {
-        for (int i = 1; i < WaveCounter; i++)
-        {
-            coins += coins / 20;
-        }
+
         saveStuff.money += coins;
         saveStuff.SaveFile();
     }
@@ -136,7 +133,7 @@ public class spawning : MonoBehaviour
         WaveCleared = false;
         UpgradeScreen.SetActive(false);
         WaveCounter++;
-        coinsText.text = "Earned " + (coins += WaveCounter) + " coins";
+        coinsText.text = "Earned " + (coins += WaveCounter + (coins / 20)) + " coins";
         actNum = 0;
         killed = 0;
         max_set = false;

@@ -36,7 +36,7 @@ public class GlobalUpgrades : MonoBehaviour
     public void updateUpgrades()
     {
 
-        Money = upgradeLoad.money;
+        Money = Mathf.Floor(upgradeLoad.money);
         PenLVL = upgradeLoad.PenLVL;
         Multi = upgradeLoad.Multi;
         Dmg = upgradeLoad.Dmg;
