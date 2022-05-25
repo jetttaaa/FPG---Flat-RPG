@@ -36,7 +36,7 @@ public class Stats : MonoBehaviour
 
     private void UpdateStats()
     {
-        stats.text = "Max HP: " + max_hp + "\nAttack Power: " + AttackPower + "\n Bullet Speed: " + bulletSpeed + "\n HP Regen: " + hp_reg + "\n Penetration: " + pen + "\n Multishot: " + (multi - 1);
+        stats.text = "Max HP: " + max_hp + "\nAttack Power: " + AttackPower + "\n Bullet Speed: " + bulletSpeed + "\nDefence: " + def + "\nHP Regen: " + hp_reg + "\n Penetration: " + pen + "\n Multishot: " + (multi - 1);
     }
     private void Update()
     {

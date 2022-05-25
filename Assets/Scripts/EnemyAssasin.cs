@@ -1,9 +1,10 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Enemy : MonoBehaviour
+public class EnemyAssasin : MonoBehaviour
 {
     private GameObject Player;
     public GameObject damageTextPrefab;
@@ -13,16 +14,15 @@ public class Enemy : MonoBehaviour
     public AudioSource _audioSource;
     public AudioSource hitsound;
     public Stats stats;
-    private Player player;
 
-    private float speed = 4f;
+    private float speed = 8f;
     public float flashTime;
     public bool attacking = false;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     public float hp = 30f;
-    public float def = 1;
-    public float damage = 5;
+    public float def = 1f;
+    public float damage = 5f;
     public string textToDisplay;
     private int WaveCount;
 
@@ -31,9 +31,7 @@ public class Enemy : MonoBehaviour
     void Start()
 
     {
-
         Player = GameObject.Find("Player");
-        player = Player.GetComponent<Player>();
         spawning = GameObject.FindGameObjectWithTag("MainBrain");
         stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
@@ -43,12 +41,11 @@ public class Enemy : MonoBehaviour
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
-        hp *= 1;
+        hp *= 0.5f;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
-        damage *= 1;
+        damage *= 3f;
         for (int i = 1; i < WaveCount; i++) def += Mathf.Round(def / 20f * 1000.0f) / 1000.0f;
-        def *= 1;
-
+        def *= 0.5f;
     }
     void Update()
     {
@@ -62,11 +59,11 @@ public class Enemy : MonoBehaviour
         {
             nextActionTime = Time.time + period;
             hitsound.Play();
-            player.Damaged(damage);
+            Player.GetComponent<Player>().Damaged(damage);
         }
         if (hp <= 0)
         {
-            spawning.GetComponent<spawning>().killed++;
+            spawning.GetComponent<spawning>().killed += 1f;
             _audioSource.Play();
             GameObject.Destroy(this.gameObject);
         }
@@ -97,3 +94,4 @@ public class Enemy : MonoBehaviour
         }
     }
 }
+

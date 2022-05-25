@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Enemy : MonoBehaviour
+public class ArmoredEnemy : MonoBehaviour
 {
     private GameObject Player;
     public GameObject damageTextPrefab;
     public GameObject spawning;
-    private GameObject thisObject;
     public SpriteRenderer renderer;
     public AudioSource _audioSource;
     public AudioSource hitsound;
@@ -43,11 +42,11 @@ public class Enemy : MonoBehaviour
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
-        hp *= 1;
+        hp *= 2;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
         damage *= 1;
         for (int i = 1; i < WaveCount; i++) def += Mathf.Round(def / 20f * 1000.0f) / 1000.0f;
-        def *= 1;
+        def *= 2;
 
     }
     void Update()
@@ -79,9 +78,9 @@ public class Enemy : MonoBehaviour
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         hp -= stats.AttackPower - def;
     }
-    void FlashRed()
+    void FlashYellow()
     {
-        renderer.color = Color.red;
+        renderer.color = Color.yellow;
         Invoke("ResetColor", flashTime);
     }
     void ResetColor()
@@ -92,7 +91,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            FlashRed();
+            FlashYellow();
             Damaged();
         }
     }

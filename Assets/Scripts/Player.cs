@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
     public float bulletSpeed;
     public float hp;
-    public float damage;
     public float AttackPower;
     public float flashTime;
     public float hp_reg;
@@ -32,10 +31,7 @@ public class Player : MonoBehaviour
     public float period = 0.01f;
     public int UpgradeNum = 1;
 
-    private Vector3 scale;
-    private Vector3 dump;
-    private Vector3 scaleLimiter;
-    private Vector3 maxHP;
+
     private void Awake()
     {
         Stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
@@ -43,15 +39,11 @@ public class Player : MonoBehaviour
         _audiosource = GetComponent<AudioSource>();
         bulletSpeed = 1;
         hp = 1;
-        damage = 1;
         AttackPower = 1;
         hp_reg = 0.5f;
         max_hp = hp;
         multi = 1;
         def = 0;
-        scale = new Vector3(damage, 0f, 0f);
-        scaleLimiter = new Vector3(0f, 0f, 0f);
-        dump = new Vector3(1f, 1f, 0f);
         origionalColor = renderer.color;
 
     }
@@ -75,15 +67,15 @@ public class Player : MonoBehaviour
         hp_reg = Stats.hp_reg;
         bulletSpeed = Stats.bulletSpeed;
         max_hp = Stats.max_hp;
-        damage = Stats.damage;
         def = Stats.def;
         AttackPower = Stats.AttackPower;
         multi = Mathf.Floor(Stats.multi);
     }
-    public void Damaged()
+    public void Damaged(float damage)
     {
         if (damage < def) hp -= 1;
         else hp -= (damage - def);
+        FlashRed();
         UpdateHealthBar();
     }
     void FlashRed()

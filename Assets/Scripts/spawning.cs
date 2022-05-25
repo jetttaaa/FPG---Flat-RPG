@@ -133,7 +133,7 @@ public class spawning : MonoBehaviour
         WaveCleared = false;
         UpgradeScreen.SetActive(false);
         WaveCounter++;
-        coinsText.text = "Earned " + (coins += WaveCounter + (coins / 20)) + " coins";
+        coinsText.text = "Earned " + (Mathf.Floor(coins += WaveCounter + (coins / 20))) + " coins";
         actNum = 0;
         killed = 0;
         max_set = false;
