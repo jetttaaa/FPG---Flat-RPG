@@ -138,14 +138,14 @@ public class Player : MonoBehaviour
             if (i % 2 == 0)
             {
                 Temporary_Bullet_Handler = Instantiate(bullet, transform.position, transform.rotation);
-                Temporary_Bullet_Handler.transform.Rotate(Vector3.forward * (i * 2));
+                Temporary_Bullet_Handler.transform.Rotate(Vector3.forward * (i * 3));
                 Temporary_Bullet_Handler.GetComponent<Rigidbody2D>().AddForce(Temporary_Bullet_Handler.transform.right * bulletSpeed);
                 Destroy(Temporary_Bullet_Handler, 3.0f);
             }
             else
             {
                 Temporary_Bullet_Handler = Instantiate(bullet, transform.position, transform.rotation);
-                Temporary_Bullet_Handler.transform.Rotate(Vector3.forward * -(i * 2));
+                Temporary_Bullet_Handler.transform.Rotate(Vector3.forward * -(i * 3));
                 Temporary_Bullet_Handler.GetComponent<Rigidbody2D>().AddForce(Temporary_Bullet_Handler.transform.right * bulletSpeed);
                 Destroy(Temporary_Bullet_Handler, 3.0f);
             }

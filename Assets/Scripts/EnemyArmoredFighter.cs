@@ -1,10 +1,9 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EnemyAssasin : MonoBehaviour
+public class EnemyArmoredFighter : MonoBehaviour
 {
     private GameObject Player;
     public GameObject damageTextPrefab;
@@ -15,14 +14,15 @@ public class EnemyAssasin : MonoBehaviour
     public AudioSource hitsound;
     public Stats stats;
 
-    private float speed = 8f;
+
+    private float speed = 4f;
     public float flashTime;
     public bool attacking = false;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     public float hp = 30f;
-    public float def = 1f;
-    public float damage = 5f;
+    public float def = 1;
+    public float damage = 5;
     public string textToDisplay;
     private int WaveCount;
 
@@ -41,11 +41,11 @@ public class EnemyAssasin : MonoBehaviour
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
-        hp *= 0.5f;
+        hp *= 2f;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
-        damage *= 3f;
+        damage *= 2f;
         for (int i = 1; i < WaveCount; i++) def += Mathf.Round(def / 20f * 1000.0f) / 1000.0f;
-        def *= 0.5f;
+        def *= 2f;
     }
     void Update()
     {
@@ -67,7 +67,7 @@ public class EnemyAssasin : MonoBehaviour
             _audioSource.Play();
             GameObject.Destroy(this.gameObject);
         }
-        if (Vector2.Distance(Player.transform.position, transform.position) > 0.9) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+        if (Vector2.Distance(Player.transform.position, transform.position) > 1.05) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
     }
     public void Damaged()
     {
@@ -76,9 +76,9 @@ public class EnemyAssasin : MonoBehaviour
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         hp -= stats.AttackPower - def;
     }
-    void FlashRed()
+    void FlashYellow()
     {
-        renderer.color = Color.red;
+        renderer.color = Color.yellow;
         Invoke("ResetColor", flashTime);
     }
     void ResetColor()
@@ -89,9 +89,8 @@ public class EnemyAssasin : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            FlashRed();
+            FlashYellow();
             Damaged();
         }
     }
 }
-
