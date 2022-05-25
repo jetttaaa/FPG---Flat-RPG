@@ -6,47 +6,78 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     private GameObject Player;
-    private float speed = 2f;
+    public GameObject damageTextPrefab;
+    public GameObject spawning;
+    private GameObject thisObject;
+    public SpriteRenderer renderer;
+    public AudioSource _audioSource;
+    public AudioSource hitsound;
+    public Stats stats;
+    private Player player;
+
+    private float speed = 4f;
     public float flashTime;
-    private bool attacking = false;
+    public bool attacking = false;
     private float nextActionTime = 0.0f;
     public float period = 1f;
-    private float hp = 30f;
-    private float Hit_for = 0f;
-    public GameObject damageTextPrefab;
+    public float hp = 30f;
+    public float def = 1;
+    public float damage = 5;
     public string textToDisplay;
+    private int WaveCount;
 
     Color origionalColor;
-    public SpriteRenderer renderer;
-    void Start()
-    {
-        
-        Player = GameObject.Find("Player");
-        Hit_for = Player.GetComponent<Player>().AttackPower;
-        origionalColor = renderer.color;
-    }
 
+    void Start()
+
+    {
+
+        Player = GameObject.Find("Player");
+        player = Player.GetComponent<Player>();
+        spawning = GameObject.FindGameObjectWithTag("MainBrain");
+        stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
+        WaveCount = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().WaveCounter;
+        hitsound = GetComponent<AudioSource>();
+
+        origionalColor = renderer.color;
+
+        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
+        hp *= 1;
+        for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
+        damage *= 1;
+        for (int i = 1; i < WaveCount; i++) def += Mathf.Round(def / 20f * 1000.0f) / 1000.0f;
+        def *= 1;
+
+    }
     void Update()
     {
+        Vector3 PlayerPosition = Player.transform.position;
+        Vector3 lookAt = PlayerPosition;
+        float AngleRad = Mathf.Atan2(lookAt.y - this.transform.position.y, lookAt.x - this.transform.position.x);
+        float AngleDeg = (180 / Mathf.PI) * AngleRad;
+        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg - 90);
 
-        
-        if (Time.time > nextActionTime) {   }
-        if (attacking == true && (Time.time > nextActionTime)) {
+        if (attacking == true && (Time.time > nextActionTime))
+        {
             nextActionTime = Time.time + period;
-            Player.GetComponent<Player>().Damaged();
-            Debug.Log("Attacked");
-        };
-        if (hp <= 0) GameObject.Destroy(this.gameObject);
-        if (Vector2.Distance(Player.transform.position, transform.position) > 1.1) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
-            
-        
+            hitsound.Play();
+            player.Damaged(damage);
+        }
+        if (hp <= 0)
+        {
+            spawning.GetComponent<spawning>().killed++;
+            _audioSource.Play();
+            GameObject.Destroy(this.gameObject);
+        }
+        if (!attacking) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
     }
     public void Damaged()
     {
-        GameObject DamageText = Instantiate(damageTextPrefab, this.transform);
+        Vector3 spawningpos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        GameObject DamageText = Instantiate(damageTextPrefab, spawningpos, Quaternion.identity);
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
-        hp -= Hit_for;
-        
+        hp -= stats.AttackPower - def;
     }
     void FlashRed()
     {
@@ -63,14 +94,6 @@ public class Enemy : MonoBehaviour
         {
             FlashRed();
             Damaged();
-        }
-        
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            attacking = true;
         }
     }
 }
