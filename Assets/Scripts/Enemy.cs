@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
             GameObject.Destroy(this.gameObject);
         }
-        if (Vector2.Distance(Player.transform.position, transform.position) > 1.1) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
+        if (!attacking) transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, speed * Time.deltaTime);
     }
     public void Damaged()
     {

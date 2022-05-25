@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EnemyTank : MonoBehaviour
+public class EnemyBoss : MonoBehaviour
 {
     private GameObject Player;
     public GameObject damageTextPrefab;
@@ -14,14 +14,15 @@ public class EnemyTank : MonoBehaviour
     public AudioSource hitsound;
     public Stats stats;
 
-    private float speed = 4f;
+
+    private float speed = 1f;
     public float flashTime;
     public bool attacking = false;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     public float hp = 30f;
-    public float def = 1f;
-    public float damage = 5f;
+    public float def = 1;
+    public float damage = 5;
     public string textToDisplay;
     private int WaveCount;
 
@@ -40,11 +41,11 @@ public class EnemyTank : MonoBehaviour
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
-        hp *= 3f;
+        hp *= 10f;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
-        damage *= 0.5f;
+        damage *= 3f;
         for (int i = 1; i < WaveCount; i++) def += Mathf.Round(def / 20f * 1000.0f) / 1000.0f;
-        def *= 1f;
+        def *= 3f;
     }
     void Update()
     {
@@ -75,9 +76,9 @@ public class EnemyTank : MonoBehaviour
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         hp -= stats.AttackPower - def;
     }
-    void FlashRed()
+    void FlashBlue()
     {
-        renderer.color = Color.red;
+        renderer.color = Color.blue;
         Invoke("ResetColor", flashTime);
     }
     void ResetColor()
@@ -88,7 +89,7 @@ public class EnemyTank : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            FlashRed();
+            FlashBlue();
             Damaged();
         }
     }

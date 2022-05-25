@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.90588236, g: 0.15686275, b: 0.15686275, a: 0.6901961}
+  m_Color: {r: 0.15686275, g: 0.1882353, b: 0.90588236, a: 0.6901961}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.56078434, b: 0.56078434, a: 1}
+  m_Color: {r: 0.56078434, g: 0.9764706, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -194,6 +194,8 @@ GameObject:
   - component: {fileID: 3689637165278643911}
   - component: {fileID: 5649154766384498086}
   - component: {fileID: 3579408483262945881}
+  - component: {fileID: 4348390910242736414}
+  - component: {fileID: 6996876389554728984}
   m_Layer: 0
   m_Name: BossTank
   m_TagString: Enemy
@@ -259,7 +261,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.90588236, g: 0.15686275, b: 0.15686275, a: 0.6901961}
+  m_Color: {r: 0.15686275, g: 0.1882353, b: 0.90588236, a: 0.6901961}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -391,3 +393,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4348390910242736414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568612784118674484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ec0f1aa8585f8499c8e3a0bb3cbae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6996876389554728984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568612784118674484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2f4049e0f48e840bac1c23fca3c939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 1622719692106802604, guid: 4abe907b3838e624ebcd32aafcef55ce, type: 3}
+  spawning: {fileID: 0}
+  renderer: {fileID: 1681812603792063986}
+  _audioSource: {fileID: 0}
+  hitsound: {fileID: 0}
+  stats: {fileID: 0}
+  flashTime: 0.1
+  attacking: 0
+  period: 1
+  hp: 30
+  def: 1
+  damage: 5
+  textToDisplay: 

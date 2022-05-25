@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EnemyTank : MonoBehaviour
+public class MaxEnemy : MonoBehaviour
 {
     private GameObject Player;
     public GameObject damageTextPrefab;
     public GameObject spawning;
-    private GameObject thisObject;
     public SpriteRenderer renderer;
     public AudioSource _audioSource;
     public AudioSource hitsound;
     public Stats stats;
+    private Player player;
 
-    private float speed = 4f;
+    private float speed = 6f;
     public float flashTime;
     public bool attacking = false;
     private float nextActionTime = 0.0f;
     public float period = 1f;
     public float hp = 30f;
-    public float def = 1f;
-    public float damage = 5f;
+    public float def = 1;
+    public float damage = 5;
     public string textToDisplay;
     private int WaveCount;
 
@@ -30,7 +30,9 @@ public class EnemyTank : MonoBehaviour
     void Start()
 
     {
+
         Player = GameObject.Find("Player");
+        player = Player.GetComponent<Player>();
         spawning = GameObject.FindGameObjectWithTag("MainBrain");
         stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
@@ -40,11 +42,12 @@ public class EnemyTank : MonoBehaviour
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
-        hp *= 3f;
+        hp *= 3;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
-        damage *= 0.5f;
+        damage *= 2;
         for (int i = 1; i < WaveCount; i++) def += Mathf.Round(def / 20f * 1000.0f) / 1000.0f;
-        def *= 1f;
+        def *= 3;
+
     }
     void Update()
     {
@@ -58,11 +61,11 @@ public class EnemyTank : MonoBehaviour
         {
             nextActionTime = Time.time + period;
             hitsound.Play();
-            Player.GetComponent<Player>().Damaged(damage);
+            player.Damaged(damage);
         }
         if (hp <= 0)
         {
-            spawning.GetComponent<spawning>().killed += 1f;
+            spawning.GetComponent<spawning>().killed++;
             _audioSource.Play();
             GameObject.Destroy(this.gameObject);
         }
@@ -75,9 +78,9 @@ public class EnemyTank : MonoBehaviour
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
         hp -= stats.AttackPower - def;
     }
-    void FlashRed()
+    void FlashYellow()
     {
-        renderer.color = Color.red;
+        renderer.color = Color.yellow;
         Invoke("ResetColor", flashTime);
     }
     void ResetColor()
@@ -88,7 +91,7 @@ public class EnemyTank : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            FlashRed();
+            FlashYellow();
             Damaged();
         }
     }
