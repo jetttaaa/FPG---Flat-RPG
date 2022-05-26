@@ -17,6 +17,10 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    public void EnemyInfo()
+    {
+        SceneManager.LoadScene("EnemyInfo");
+    }
 }
 
 
