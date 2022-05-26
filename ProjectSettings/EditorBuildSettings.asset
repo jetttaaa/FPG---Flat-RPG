@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GlobalUpgrg.unity
     guid: 089b4833e36095147b2afa5b15982c4d
+  - enabled: 1
+    path: Assets/Scenes/EnemyInfo.unity
+    guid: ba5fe30562c156945973e909ffc39a60
   m_configObjects: {}

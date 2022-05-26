@@ -38,9 +38,7 @@ public class spawning : MonoBehaviour
         pos1.SetActive(false);
         pos2.SetActive(false);
         Paused = true;
-    }
-    public void FirstStart()
-    {
+        GameObject.FindGameObjectWithTag("EnemyStats").GetComponent<EnemyStatsShown>().UpdateStats();
         Paused = false;
         StartSpawning();
         Time.timeScale = 1;
@@ -134,6 +132,7 @@ public class spawning : MonoBehaviour
         UpgradeScreen.SetActive(false);
         WaveCounter++;
         coinsText.text = "Earned " + (Mathf.Floor(coins += WaveCounter + (coins / 20))) + " coins";
+        GameObject.FindGameObjectWithTag("EnemyStats").GetComponent<EnemyStatsShown>().UpdateStats();
         actNum = 0;
         killed = 0;
         max_set = false;
