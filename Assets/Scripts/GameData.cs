@@ -7,7 +7,6 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public float score;
     public string name;
     public float money;
     public float PenLVL;
@@ -19,9 +18,8 @@ public class GameData
     public float Def;
     public bool auto;
 
-    public GameData(float Hscore, string nick, float coins, float Pen, float Mult, float Damage, float Speed, float Health, float Regen, float defence, bool automatic)
+    public GameData(string nick, float coins, float Pen, float Mult, float Damage, float Speed, float Health, float Regen, float defence, bool automatic)
     {
-        score = Hscore;
         name = nick;
         money = coins;
         PenLVL = Pen;

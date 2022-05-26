@@ -24,6 +24,8 @@ public class EnemyTank : MonoBehaviour
     public float damage = 5f;
     public string textToDisplay;
     private int WaveCount;
+    private bool Fire;
+
 
     Color origionalColor;
 
@@ -36,7 +38,7 @@ public class EnemyTank : MonoBehaviour
         _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
         WaveCount = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().WaveCounter;
         hitsound = GetComponent<AudioSource>();
-
+        Fire = GameObject.FindGameObjectWithTag("Elements").GetComponent<Elements>().Fire;
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
@@ -73,7 +75,7 @@ public class EnemyTank : MonoBehaviour
         Vector3 spawningpos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject DamageText = Instantiate(damageTextPrefab, spawningpos, Quaternion.identity);
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
-        hp -= stats.AttackPower - def;
+        if (Fire) hp -= (stats.AttackPower * 1.5f) - def; else hp -= stats.AttackPower - def;
     }
     void FlashRed()
     {

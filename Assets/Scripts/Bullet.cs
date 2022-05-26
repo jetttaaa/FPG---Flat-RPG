@@ -17,11 +17,5 @@ public class Bullet : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0) Destroy(gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            pen -= 1;
-        }
-    }
+
 }

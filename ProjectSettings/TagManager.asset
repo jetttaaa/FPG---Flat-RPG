@@ -9,7 +9,10 @@ TagManager:
   - Bullet
   - BOSS
   - Enemy
-  - Enemy_Basic
+  - buttonsound
+  - errorsound
+  - EnemyStats
+  - Elements
   layers:
   - Default
   - TransparentFX

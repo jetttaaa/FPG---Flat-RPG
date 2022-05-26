@@ -16,6 +16,8 @@ public class spawning : MonoBehaviour
     public GameObject PausedInWaveMenu;
     public GameObject GameOver;
     public GameObject UpgradeScreen;
+    public GameObject Elements;
+    public Player player;
     public SaveGame saveStuff;
     public int WaveCounter;
     public bool WaveCleared = false;
@@ -39,7 +41,16 @@ public class spawning : MonoBehaviour
         pos2.SetActive(false);
         Paused = true;
         GameObject.FindGameObjectWithTag("EnemyStats").GetComponent<EnemyStatsShown>().UpdateStats();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+
+    }
+
+    public void FirstStart()
+    {
         Paused = false;
+        Elements.SetActive(false);
+        player.UpdateStats();
         StartSpawning();
         Time.timeScale = 1;
     }

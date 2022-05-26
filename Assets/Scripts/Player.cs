@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer renderer;
     private spawning controller;
     private AudioSource _audiosource;
+    private Elements elements;
 
     Color origionalColor;
     private float nextActionTime = 0.0f;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Stats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        elements = GameObject.FindGameObjectWithTag("Elements").GetComponent<Elements>();
         controller = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>();
         _audiosource = GetComponent<AudioSource>();
         bulletSpeed = 1;
@@ -64,15 +66,16 @@ public class Player : MonoBehaviour
     }
     public void UpdateStats()
     {
-        hp_reg = Stats.hp_reg;
+        if (elements.Nature) hp_reg = (Stats.hp_reg * 1.5f); else hp_reg = Stats.hp_reg;
         bulletSpeed = Stats.bulletSpeed;
-        max_hp = Stats.max_hp;
-        def = Stats.def;
+        if (elements.Nature) max_hp = (Stats.max_hp * 1.5f); else max_hp = Stats.max_hp;
+        if (elements.Metal) def = (Stats.def * 2f); else def = Stats.def;
         AttackPower = Stats.AttackPower;
         multi = Mathf.Floor(Stats.multi);
     }
     public void Damaged(float damage)
     {
+
         if (damage < def) hp -= 1;
         else hp -= (damage - def);
         FlashRed();

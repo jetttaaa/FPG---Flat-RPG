@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class SaveGame : MonoBehaviour
 {
 
-    public float HighScore = 0f;
     public string currentName = "";
     public float money = 0f;
     public float PenLVL = 0f;
@@ -27,7 +26,7 @@ public class SaveGame : MonoBehaviour
         if (File.Exists(destination)) file = File.OpenWrite(destination);
         else file = File.Create(destination);
 
-        GameData data = new GameData(HighScore, currentName, money, PenLVL, Multi, Dmg, BulSp, HP, HP_REG, def, auto);
+        GameData data = new GameData(currentName, money, PenLVL, Multi, Dmg, BulSp, HP, HP_REG, def, auto);
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(file, data);
         file.Close();
@@ -49,7 +48,6 @@ public class SaveGame : MonoBehaviour
         GameData data = (GameData)bf.Deserialize(file);
         file.Close();
 
-        HighScore = data.score;
         currentName = data.name;
         money = data.money;
         PenLVL = data.PenLVL;

@@ -8,12 +8,19 @@ public class Stats : MonoBehaviour
     public float bulletSpeed;
     public float hp;
     public float max_hp;
+    public float max_hp_text;
     public float hp_reg;
+    public float hp_reg_text;
     public float damage;
     public float AttackPower;
+    public float AttackPower_text;
     public float pen;
     public float multi;
     public float def;
+    public float def_text;
+    public bool Metal = false;
+    public bool Nature = false;
+    public bool Fire = false;
     public Text stats;
 
     private SaveGame save;
@@ -36,7 +43,11 @@ public class Stats : MonoBehaviour
 
     private void UpdateStats()
     {
-        stats.text = "Max HP: " + max_hp + "\nAttack Power: " + AttackPower + "\n Bullet Speed: " + bulletSpeed + "\nDefence: " + def + "\nHP Regen: " + hp_reg + "\n Penetration: " + pen + "\n Multishot: " + (multi - 1);
+        if (Nature) hp_reg_text = (hp_reg * 1.5f); else hp_reg_text = hp_reg;
+        if (Nature) max_hp_text = (max_hp * 1.5f); else max_hp_text = max_hp;
+        if (Metal) def_text = (def * 2f); else def_text = def;
+        if (Fire) AttackPower_text = (AttackPower * 1.5f); else AttackPower_text = AttackPower;
+        stats.text = "Max HP: " + max_hp_text + "\nAttack Power: " + AttackPower_text + "\n Bullet Speed: " + bulletSpeed + "\nDefence: " + def_text + "\nHP Regen: " + hp_reg_text + "\n Penetration: " + pen + "\n Multishot: " + (multi - 1);
     }
     private void Update()
     {

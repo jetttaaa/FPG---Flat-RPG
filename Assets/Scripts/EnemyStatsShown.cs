@@ -16,6 +16,6 @@ public class EnemyStatsShown : MonoBehaviour
         for (int i = 1; i < WaveCount; i++) HP += Mathf.Floor(HP / 10f);
         for (int i = 1; i < WaveCount; i++) DMG += Mathf.Round(DMG / 20f * 1000.0f) / 1000.0f;
         for (int i = 1; i < WaveCount; i++) DEF += Mathf.Round(DEF / 20f * 1000.0f) / 1000.0f;
-        Text.text = "HP: " + HP + "\n DMG: " + DMG + "\n DEF: " + DEF;
+        Text.text = "HP: " + HP + "\nDMG: " + DMG + "\nDEF: " + DEF;
     }
 }

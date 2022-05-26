@@ -8,13 +8,12 @@ public class Enemy : MonoBehaviour
     private GameObject Player;
     public GameObject damageTextPrefab;
     public GameObject spawning;
-    private GameObject thisObject;
     public SpriteRenderer renderer;
     public AudioSource _audioSource;
     public AudioSource hitsound;
     public Stats stats;
     private Player player;
-
+    private bool Fire;
     private float speed = 4f;
     public float flashTime;
     public bool attacking = false;
@@ -39,7 +38,7 @@ public class Enemy : MonoBehaviour
         _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
         WaveCount = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().WaveCounter;
         hitsound = GetComponent<AudioSource>();
-
+        Fire = GameObject.FindGameObjectWithTag("Elements").GetComponent<Elements>().Fire;
         origionalColor = renderer.color;
 
         for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
@@ -77,7 +76,7 @@ public class Enemy : MonoBehaviour
         Vector3 spawningpos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject DamageText = Instantiate(damageTextPrefab, spawningpos, Quaternion.identity);
         DamageText.transform.GetChild(0).GetComponent<TextMeshPro>().SetText(textToDisplay);
-        hp -= stats.AttackPower - def;
+        if (Fire) hp -= (stats.AttackPower * 1.5f) - def; else hp -= stats.AttackPower - def;
     }
     void FlashRed()
     {
