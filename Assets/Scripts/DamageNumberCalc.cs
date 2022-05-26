@@ -13,9 +13,4 @@ public class DamageNumberCalc : MonoBehaviour
         if (Fire == true) num.text = (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().AttackPower * 1.5f).ToString(); else num.text = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().AttackPower.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

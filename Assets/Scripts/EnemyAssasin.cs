@@ -26,7 +26,7 @@ public class EnemyAssasin : MonoBehaviour
     public string textToDisplay;
     private int WaveCount;
     private bool Fire;
-    
+
 
     Color origionalColor;
 
@@ -39,10 +39,10 @@ public class EnemyAssasin : MonoBehaviour
         _audioSource = GameObject.FindGameObjectWithTag("Stats").GetComponent<AudioSource>();
         WaveCount = GameObject.FindGameObjectWithTag("MainBrain").GetComponent<spawning>().WaveCounter;
         hitsound = GetComponent<AudioSource>();
-Fire = GameObject.FindGameObjectWithTag("Elements").GetComponent<Elements>().Fire;
+        Fire = GameObject.FindGameObjectWithTag("Elements").GetComponent<Elements>().Fire;
         origionalColor = renderer.color;
 
-        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
+        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 20f);
         hp *= 0.5f;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
         damage *= 3f;

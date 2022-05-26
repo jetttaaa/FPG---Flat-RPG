@@ -12,7 +12,8 @@ public class spawning : MonoBehaviour
     public GameObject pos2;
     public GameObject nopos1;
     public GameObject nopos2;
-    public GameObject target;
+    public GameObject[] target = new GameObject[8];
+    public GameObject[] boss = new GameObject[2];
     public GameObject PausedInWaveMenu;
     public GameObject GameOver;
     public GameObject UpgradeScreen;
@@ -25,13 +26,13 @@ public class spawning : MonoBehaviour
     public float killed = 0;
     private bool max_set;
 
-    public int max_spawn_num;
+    public float max_spawn_num;
     public float spawn_time = 1f;
 
     public float coins;
     public Text coinsText;
 
-    public int actNum = 0;
+    public float actNum = 0;
 
     private void Start()
     {
@@ -56,7 +57,11 @@ public class spawning : MonoBehaviour
     }
     public async void StartSpawning()
     {
-        max_spawn_num = (WaveCounter * 5);
+        if (WaveCounter <= 10) max_spawn_num = (WaveCounter * 5);
+        if (WaveCounter <= 20 && WaveCounter > 10) max_spawn_num = ((WaveCounter - 10) * 4);
+        if (WaveCounter <= 30 && WaveCounter > 20) max_spawn_num = ((WaveCounter - 20) * 3);
+        if (WaveCounter > 30) max_spawn_num = ((WaveCounter - 30) * 2);
+
         max_set = true;
         InvokeRepeating("SpawnTarget", 0, spawn_time);
     }
@@ -111,8 +116,45 @@ public class spawning : MonoBehaviour
             {
                 if (!IsCBetweenAB(notposition1, notposition2, position))
                 {
-                    Instantiate(target, position, Quaternion.Euler(new Vector2(0, 0)));
-                    actNum++;
+                    if (WaveCounter < 10)
+                    {
+                        Instantiate(target[0], position, Quaternion.Euler(new Vector2(0, 0)));
+                        actNum++;
+                    }
+                    if (WaveCounter == 10)
+                    {
+                        Instantiate(boss[0], position, Quaternion.Euler(new Vector2(0, 0)));
+                        killed = actNum;
+                        actNum = max_spawn_num;
+                    }
+                    if (WaveCounter < 20 && WaveCounter > 10)
+                    {
+                        Instantiate(target[Random.Range(1, 5)], position, Quaternion.Euler(new Vector2(0, 0)));
+                        actNum++;
+                    }
+                    if (WaveCounter == 20)
+                    {
+                        Instantiate(boss[1], position, Quaternion.Euler(new Vector2(0, 0)));
+                        killed = actNum;
+                        actNum = max_spawn_num;
+                    }
+                    if (WaveCounter < 30 && WaveCounter > 20)
+                    {
+                        Instantiate(target[Random.Range(5, 8)], position, Quaternion.Euler(new Vector2(0, 0)));
+                        actNum++;
+                    }
+                    if (WaveCounter == 30)
+                    {
+                        Instantiate(boss[2], position, Quaternion.Euler(new Vector2(0, 0)));
+                        killed = actNum;
+                        actNum = max_spawn_num;
+                    }
+                    if (WaveCounter > 30)
+                    {
+                        Instantiate(target[8], position, Quaternion.Euler(new Vector2(0, 0)));
+                        actNum++;
+                    }
+
                     spawned = true;
                 }
                 else

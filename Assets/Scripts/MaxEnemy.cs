@@ -43,7 +43,7 @@ public class MaxEnemy : MonoBehaviour
         Fire = GameObject.FindGameObjectWithTag("Elements").GetComponent<Elements>().Fire;
         origionalColor = renderer.color;
 
-        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 10f);
+        for (int i = 1; i < WaveCount; i++) hp += Mathf.Floor(hp / 20f);
         hp *= 3;
         for (int i = 1; i < WaveCount; i++) damage += Mathf.Round(damage / 20f * 1000.0f) / 1000.0f;
         damage *= 2;
