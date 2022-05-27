@@ -65,7 +65,7 @@ public class EnemyBoss : MonoBehaviour
         }
         if (hp <= 0)
         {
-            spawning.GetComponent<spawning>().killed += 1f;
+            spawning.GetComponent<spawning>().killed = spawning.GetComponent<spawning>().max_spawn_num;
             _audioSource.Play();
             GameObject.Destroy(this.gameObject);
         }

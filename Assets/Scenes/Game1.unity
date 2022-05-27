@@ -287,7 +287,7 @@ MonoBehaviour:
   hp: 100
   max_hp: 100
   max_hp_text: 0
-  hp_reg: 0.5
+  hp_reg: 1
   hp_reg_text: 0
   damage: 5
   AttackPower: 10

@@ -124,7 +124,7 @@ public class spawning : MonoBehaviour
                     if (WaveCounter == 10)
                     {
                         Instantiate(boss[0], position, Quaternion.Euler(new Vector2(0, 0)));
-                        killed = actNum;
+
                         actNum = max_spawn_num;
                     }
                     if (WaveCounter < 20 && WaveCounter > 10)
@@ -135,7 +135,7 @@ public class spawning : MonoBehaviour
                     if (WaveCounter == 20)
                     {
                         Instantiate(boss[1], position, Quaternion.Euler(new Vector2(0, 0)));
-                        killed = actNum;
+
                         actNum = max_spawn_num;
                     }
                     if (WaveCounter < 30 && WaveCounter > 20)
@@ -146,7 +146,7 @@ public class spawning : MonoBehaviour
                     if (WaveCounter == 30)
                     {
                         Instantiate(boss[2], position, Quaternion.Euler(new Vector2(0, 0)));
-                        killed = actNum;
+
                         actNum = max_spawn_num;
                     }
                     if (WaveCounter > 30)
