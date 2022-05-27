@@ -577,7 +577,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5506376019037476906, guid: c5147ad83de606341bb05a6d184b4fee, type: 3}
       propertyPath: m_Text
-      value: Stats
+      value: Enemy Stats
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506376019037476906, guid: c5147ad83de606341bb05a6d184b4fee, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5506376019702048100, guid: c5147ad83de606341bb05a6d184b4fee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
